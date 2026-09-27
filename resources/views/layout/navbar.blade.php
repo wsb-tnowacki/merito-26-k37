@@ -3,9 +3,11 @@
     <li class="relative mx-1">
       <a class="block px-2 py-1 text-gray-800 hover:text-gray-600 transition-colors rounded no-underline" href="{{route('ogolne.start')}}">Start</a>
     </li>
+@auth
     <li class="relative mx-1">
       <a class="block px-2 py-1 text-gray-800 hover:text-gray-600 transition-colors rounded" href="{{route('ogolne.kontakt')}}">Kontakt</a>
-    </li>
+    </li>    
+@endauth
     <li class="relative mx-1">
       <a class="block px-2 py-1 text-gray-800 hover:text-gray-600 transition-colors rounded" href="{{route('ogolne.onas')}}">O nas</a>
     </li>
