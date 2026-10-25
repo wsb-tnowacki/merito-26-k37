@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\OgolneController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /* Route::get('/', function () {
@@ -15,7 +16,8 @@ Route::controller(OgolneController::class)->group(function () {
 });
 Route::get('/dashboard', function () {
     //return view('dashboard');
-    return view('ogolne.welcome');
+    //return view('ogolne.welcome');
+    return redirect(route('ogolne.start'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -25,3 +27,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//dodanie routingu typu resources - zobaczyć efekt poleceniem 'php artisan route:list --name="post" '
+Route::resource('post',PostController::class);
