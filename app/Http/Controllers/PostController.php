@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posty = Post::all();
+        return view('post.lista', compact('posty'));
     }
 
     /**
