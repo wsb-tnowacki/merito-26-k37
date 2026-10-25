@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -26,10 +27,11 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    //public function store(Request $request) 
+    public function store(PostRequest $request) //zmieniono Request na PostRequest
     {
         
-        $request->validate([
+        /* $request->validate([
             'tytul' => [
                 'required',
                 'min:3',
@@ -38,7 +40,7 @@ class PostController extends Controller
             'autor' => 'required|min:2|max:100',
             'email' => 'required|email:rfc,dns|min:3|max:200',
             'tresc' => 'required|min:5'
-        ]);
+        ]); */
         dd($request);
     }
 

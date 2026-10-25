@@ -1,20 +1,48 @@
 @extends('layout.layout')
 @section('tresc')
 <div class="w-full ">
+    @if ($errors->any())
+        <div class="text-red-700">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="text-red-700 font-bold">{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ route('post.store') }}" method="POST" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 max00 font-bold mb-2 ">
     @csrf
         <div class="mb-2"><label for="tytul" class="block text-gray-700 font-bold mb-2">Tytuł</label>
             <input type="text" name="tytul" id="tytul" value="{{old('tytul')}}" placeholder="Podaj tytuł postu" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+@if ($errors->has('tytul'))   
+    <div class="text-red-700">
+            <ul>
+                @foreach ($errors->get('tytul') as $error)
+                    <li class="text-red-700 font-bold">{{$error}}</li>
+                @endforeach
+            </ul>
+    </div>
+    
+@endif
         </div>
         <div class="mb-2"><label for="autor" class="block text-gray-700 font-bold mb-2">Autor</label>
             <input type="text" name="autor" id="autor" value="{{old('autor')}}" placeholder="Podaj autora postu" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+@error('autor')
+    <div class="text-red-700 font-bold">{{$message}}</div>
+@enderror
         </div>
         <div class="mb-2"><label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
             <input type="text" name="email" id="email"  value="{{old('email')}}" placeholder="Podaj email autora postu" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+@error('email')
+    <div class="text-red-700 font-bold">{{$message}}</div>
+@enderror
         </div>
         <div class="mb-2">
             <label for="tresc" class="block text-gray-700 font-bold mb-2">Treść</label>
             <textarea name="tresc" id="tresc" rows="4" placeholder="Wpisz treść posta" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{old('tresc')}}</textarea>
+@error('tresc')
+    <div class="text-red-700 font-bold">{{$message}}</div>
+@enderror
         </div>
         <div class="flex items-center justify-between">
             <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Dodaj post</button>
