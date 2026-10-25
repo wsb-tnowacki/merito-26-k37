@@ -41,7 +41,14 @@ class PostController extends Controller
             'email' => 'required|email:rfc,dns|min:3|max:200',
             'tresc' => 'required|min:5'
         ]); */
-        dd($request);
+        /* dd($request); */
+        $post = new Post();
+        $post->tytul = request('tytul');
+        $post->autor = $request['autor'];
+        $post->email = request('email');
+        $post->tresc = request('tresc');
+        $post->save();
+        return redirect()->route('post.index')->with('message','Dodano poprawnie post');
     }
 
     /**
