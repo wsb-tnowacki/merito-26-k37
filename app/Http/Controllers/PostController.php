@@ -28,6 +28,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $request->validate([
+            'tytul' => [
+                'required',
+                'min:3',
+                'max:200'
+                ],
+            'autor' => 'required|min:2|max:100',
+            'email' => 'required|email:rfc,dns|min:3|max:200',
+            'tresc' => 'required|min:5'
+        ]);
         dd($request);
     }
 
